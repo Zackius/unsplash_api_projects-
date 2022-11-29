@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 
 const GetImage = () => {
+    const [images, setImages] = useState([])
+    useEffect(() => {
+    
+        
+}, [])
+    use
   return (
       <div>
           Hello

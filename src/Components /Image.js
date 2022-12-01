@@ -1,10 +1,12 @@
 import React from "react";
 import { format } from "date-fns";
 import { FcLike } from "react-icons/fc";
+import {Link} from "react-router-dom"
 
 const Image = (props) => {
   return (
-    <article className="shadow-md bg-white  rounded-3xl  p-5">
+    <Link to={`imagecard/${props.id}`}>
+    <article className="shadow-md bg-white  rounded-3xl px-4  p-5">
       <img
         src={props.urls.full}
         alt={props.user.name}
@@ -31,7 +33,7 @@ const Image = (props) => {
               className="font-bold underline "
               href={`https://instagram.com/${props.user.instagram_username}`}
             >
-              instagram
+              Instagram
             </a>
           </ul>
           <div className="flex items-center  justify-around pt-4">
@@ -44,6 +46,7 @@ const Image = (props) => {
         </div>
       </article>
     </article>
+    </Link>
   );
 };
 

@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 const SignIn = () => {
   return (
-    <div className="flex justify-center pt-48">
+    <div className="flex justify-center pt-64">
       <form class="h-[350px] w-[350px] bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label
@@ -30,7 +30,7 @@ const SignIn = () => {
             class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            placeholder="******************"
+            placeholder="******"
           />
           <p class="text-red-500 text-xs italic">Please choose a password.</p>
         </div>

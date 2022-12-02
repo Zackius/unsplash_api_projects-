@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { FcLike } from "react-icons/fc";
 import {Link} from "react-router-dom"
 
+
 const Image = (props) => {
   return (
     <Link to={`imagecard/${props.id}`}>
@@ -45,7 +46,7 @@ const Image = (props) => {
         
         </div>
       </article>
-    </article>
+      </article>
     </Link>
   );
 };

@@ -1,10 +1,10 @@
 import React from "react";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const SignIn = () => {
   return (
-    <div className="flex justify-center pt-64">
-      <form class="h-[350px] w-[350px] bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex justify-center pt-36">
+      <form class="h-[300px] w-[350px] bg-white shadow-md rounded px-8 pt-4  pb-8 mb-4">
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
@@ -35,7 +35,7 @@ const SignIn = () => {
           <p class="text-red-500 text-xs italic">Please choose a password.</p>
         </div>
         <div class="flex items-center justify-between">
-        <Button variant="contained">Login </Button>
+          <Button variant="contained">Login </Button>
           <a
             class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             href="/"

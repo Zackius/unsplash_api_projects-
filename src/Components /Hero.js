@@ -13,7 +13,7 @@ const Hero = () => {
     ]
     return (
         <div>
-          <section class="h-[800px] w-full  pt-36 flex  flex-cols justify-center items-center px-8 gap-36 ">
+          <section class="h-[800px] w-full  pt-32 flex  flex-cols justify-center items-center px-8 gap-36 ">
   
               <div>
           <h2 class="font-bold text-4xl underline p-4">PhotoBooth</h2>
@@ -39,15 +39,7 @@ const Hero = () => {
                     
         </div>
               <div class="shadow-xl  p-4 rounded-2xl">
-              <SimpleImageSlider
-                      width={800}
-                      height={600}
-              loop={true}
-              autoPlayDelay={2.0}
-              autoPlay={true}
-              images={images}
-              showBullets={true}
-            />
+            
                 </div>
               
       </section>

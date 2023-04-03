@@ -1,47 +1,36 @@
-// Render Prop
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React from 'react'
+import { Formik, Form } from 'formik'
+import TextField from './TextField'
 
-const Basic = () => (
-  <div className='flex justify-center pt-36'>
-    <h1>Any place in your app!</h1>
-    <Formik
-      initialValues={{fullnames: '', username:'',  email: '', password: '' }}
-      validate={values => {
-        const errors = {};
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
+const SignUp = () => {
+  return (
+    <Formik className="flex justify-center pt-36"
+      initialValues={
+        {
+          fullnames: "",
+          username: "",
+          email: "",
+          password: ""
+        }    }>
+      {
+        formik => {
+          <div >
+            <h1 className='text-2xl font-bold text-center'>Sign Up</h1>
+
+            <Form>
+              <TextField label="Full name" name="fullname" type="text" />
+              <TextField label="Username" name="username" type="text" />
+              <TextField label="Email" name="email" type="email" />
+              <TextField label="Password" name="password" type="password" />
+              <button className='text-center bg-blue-500 rounded-lg' type="submit">Register </button>
+     
+            </Form>
+          </div>
         }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form className='flex'>
-          <Field type="text" name="fullnames" />
-          <ErrorMessage name="fullnames" component="div" />
-          <Field type="text" name="username" />
-          <ErrorMessage name="usernamel" component="div" />
-          <Field type="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
-  </div>
-);
+      }
 
-export default Basic;
+    </Formik>
+  )
+}
+
+export default SignUp

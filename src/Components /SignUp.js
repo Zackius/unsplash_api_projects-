@@ -1,8 +1,15 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
-
+import * as Yup from "yup"
 const SignUp = () => {
+  const validate = Yup.object({
+    fullnames: Yup.string().required("Fullnames Required"),
+    username: Yup.string().required("Username Required" ),
+    email: Yup.string().required(" Email Required" ).email("Email is Invalid"),
+    password: Yup.string().min(6, "Password must be 6 characters or more").required(" Password Required" )
+ 
+  })
   return (
     <Formik
       initialValues={{
@@ -11,6 +18,7 @@ const SignUp = () => {
         email: "",
         password: "",
       }}
+      validationSchema = {validate}
     >
       {formik => (
         <div className=" flex flex-col  justify-center items-center p-6 pt-44">

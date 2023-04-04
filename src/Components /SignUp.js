@@ -11,6 +11,8 @@ const SignUp = () => {
       .min(6, "Password must be 6 characters or more")
       .required(" Password Required"),
   });
+    
+
   return (
     <Formik
       initialValues={{
@@ -27,7 +29,7 @@ const SignUp = () => {
       {(formik) => (
         <div className=" flex flex-col  justify-center items-center p-6 pt-44">
           <h1 className="text-2xl font-bold ">Sign Up</h1>
-          <Form className="h-auto w-[400px] bg-white   shadow-md rounded px-8 pt-4  pb-8 mb-4">
+          <Form className="h-auto w-[400px] bg-white   shadow-xl rounded-xl px-8 pt-4  pb-8 mb-4">
             <TextField label="Full name" name="fullnames" type="text" />
             <TextField label="Username" name="username" type="text" />
             <TextField label="Email" name="email" type="email" />

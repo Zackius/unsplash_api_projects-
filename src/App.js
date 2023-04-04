@@ -1,6 +1,6 @@
 import GetImage from "./Components /GetImage";
 import Navbar from "./Components /Navbar";
-import SingIn from "./Components /SignIn";
+import SignIn from "./Components /SignIn";
 import SignUp from "./Components /SignUp";
 import {Routes, Route} from "react-router-dom"
 import Hero from "./Components /Hero";
@@ -15,8 +15,8 @@ function App() {
       <Routes>
         <Route path="/"  element={<Hero/>}></Route>
         <Route path="getimage" element={<GetImage />}></Route>
-        <Route path="signin" element={<SingIn />}></Route>
-        <Route path="signup" element={ <SignUp/>}></Route>
+        <Route path="signin" element={<SignIn />}></Route>
+        <Route path="signup" element={<SignUp/>}></Route>
       </Routes>
 
       

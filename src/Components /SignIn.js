@@ -1,51 +1,42 @@
-import React from "react";
-import Button from "@mui/material/Button";
+import React from 'react'
+import { Formik, Form } from 'formik'
+import * as Yup from "yup"
+import TextField from './TextField'
 
 const SignIn = () => {
-  return (
-    <div className="flex justify-center pt-36">
-      <form class="h-[300px] w-[350px] bg-white shadow-md rounded px-8 pt-4  pb-8 mb-4">
-        <div class="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="username"
-          >
-            Username
-          </label>
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
-        </div>
-        <div class="mb-6">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="password"
-          >
-            Password
-          </label>
-          <input
-            class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******"
-          />
-          <p class="text-red-500 text-xs italic">Please choose a password.</p>
-        </div>
-        <div class="flex items-center justify-between">
-          <Button variant="contained">Login </Button>
-          <a
-            class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="/"
-          >
-            Forgot Password?
-          </a>
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default SignIn;
+    const validate = Yup.object({
+      username: Yup.string().required("Username Required"),
+      password: Yup.string()
+        .min(6, "Password must be 6 characters or more")
+        .required(" Password Required"),
+    });
+    return (
+      <Formik
+        initialValues={{
+          username: "",
+          password: "",
+        }}
+        validationSchema={validate}
+        onSubmit={values => {
+          console.log(values)
+        }}
+      >
+        {(formik) => (
+          <div className=" flex flex-col  justify-center items-center p-6 pt-44">
+            <h1 className="text-2xl font-bold ">Sign In</h1>
+            <Form className="h-auto w-[400px] bg-white   shadow-md rounded px-8 pt-4  pb-8 mb-4">
+              <TextField label="Username" name="username" type="text" />
+              <TextField label="Password" name="password" type="password" />
+              <button
+                className="text-center p-2 justify-center bg-blue-500 rounded"
+                type="submit"
+              >Login 
+              </button>
+            </Form>
+          </div>
+        )}
+      </Formik>
+    )
+  
+}
+export default SignIn

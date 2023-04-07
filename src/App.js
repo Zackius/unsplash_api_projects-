@@ -1,15 +1,15 @@
 import GetImage from "./Components /GetImage";
 import Navbar from "./Components /Navbar";
-import SignIn from "./Components /SignIn";
-import SignUp from "./Components /SignUp";
-import {Routes, Route} from "react-router-dom"
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import { Routes, Route} from "react-router-dom"
 import Hero from "./Components /Hero";
 import Footer from "./Components /Footer";
 
 
 function App() {
   return (
-<div>
+    <div>
       <Navbar />
       <Footer />
       <Routes>
@@ -17,12 +17,8 @@ function App() {
         <Route path="getimage" element={<GetImage />}></Route>
         <Route path="signin" element={<SignIn />}></Route>
         <Route path="signup" element={<SignUp/>}></Route>
-      </Routes>
-
-      
-</div>
-      
-
+          </Routes>      
+</div> 
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { logo } from "../assests/index";
 import { Link } from "react-router-dom";
+import  {FaSignInAlt, FaUserAlt} from "react-icons/fa"
 
 const Navbar = () => {
   return (
@@ -15,18 +16,18 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-                  <Link to="/getimage" className="px-12 hover:text-white font-bold"> Photos</Link>
+                  <Link to="/getimage" className="px-1  hover:text-white font-bold"> Photos</Link>
               </li>
 
         <li>
-          <Link to="/signin" className="px-12 hover:text-white font-bold">
-            {" "}
+          <Link to="/signin" className="px-12 flex  gap-2 hover:text-white font-bold">
+            <FaSignInAlt size={20}/>
             Sign In
           </Link>
         </li>
         <li>
-          <Link to="/signup" className="px-12 hover:text-white font-bold">
-            {" "}
+          <Link to="/signup" className="px-12 flex gap-2 hover:text-white font-bold">
+<FaUserAlt size={20}/>
             Sign Up
           </Link>
         </li>

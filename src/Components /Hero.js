@@ -1,7 +1,7 @@
 import React from "react";
 import { photo1, photo2, photo3, photo4 } from "../assests";
-import SimpleImageSlider from "react-simple-image-slider";
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 
 const Hero = () => {
@@ -28,12 +28,12 @@ const Hero = () => {
             into the two dimensions of a print but it always tries to get out.
                     </p>
                     <div class="flex  justify-evenly">
-                        <a href="signin">
+              <Link to="signin">
                         <Button variant="contained">Sign In </Button>
-                        </a>
-                        <a  href="signup">
+                        </Link>
+              <Link to="signup">
                         <Button variant="contained">Sign Up </Button>
-                       </a>
+                       </Link>
                        
                     </div>
                     

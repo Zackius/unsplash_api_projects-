@@ -2,7 +2,8 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextField from "./TextField";
-import  { FaSignInAlt} from "react-icons/fa"
+import { FaSignInAlt } from "react-icons/fa"
+import { useState, useEffect } from "react";
 
 const SignIn = () => {
   const validate = Yup.object({
@@ -11,6 +12,10 @@ const SignIn = () => {
       .min(6, "Password must be 6 characters or more")
       .required(" Password Required"),
   });
+
+  const [register, setRegister] = useState({
+    
+  })
   return (
     <Formik
       initialValues={{

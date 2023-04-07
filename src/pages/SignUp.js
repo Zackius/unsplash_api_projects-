@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
@@ -18,6 +18,13 @@ const SignUp = () => {
       .required(" Password Required"),
   });
 
+  const [register, setRegister] = useState({
+    fullnames: "", 
+    username: "",
+    email: "",
+    password : ""
+  })
+const {fullnames, username, email, password} = register
   return (
     <Formik
       initialValues={{

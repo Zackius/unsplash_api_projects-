@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
-import  { FaUserAlt} from "react-icons/fa"
-
+import { FaUserAlt } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../Components /Spinner";
 
 const SignUp = () => {
-
-
-   
   const validate = Yup.object({
     fullnames: Yup.string().required("Fullnames Required"),
     username: Yup.string().required("Username Required"),
@@ -17,14 +17,24 @@ const SignUp = () => {
       .min(6, "Password must be 6 characters or more")
       .required(" Password Required"),
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [register, setRegister] = useState({
-    fullnames: "", 
-    username: "",
-    email: "",
-    password : ""
-  })
-const {fullnames, username, email, password} = register
+  const { user, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+    if (isSuccess || user) {
+      navigate("/");
+    }
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+
   return (
     <Formik
       initialValues={{
@@ -34,24 +44,41 @@ const {fullnames, username, email, password} = register
         password: "",
       }}
       validationSchema={validate}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={(values, e) => {
+        e.preventDefault();
+        dispatch(register(values));
       }}
     >
       {(formik) => (
         <div className=" flex flex-col  justify-center items-center p-6 pt-44">
-          <h1 className="text-2xl font-bold flex gap-2 "><FaUserAlt /> Sign Up</h1>
+          <h1 className="text-2xl font-bold flex gap-2 ">
+            <FaUserAlt /> Sign Up
+          </h1>
           <p className="p-4 text">Please Create an Account</p>
           <Form className="h-auto w-[400px] bg-white   shadow-xl rounded-xl px-8 pt-4  pb-8 mb-4">
-            <TextField label="Full name" name="fullnames" type="text" placeholder="John Doe"/>
-            <TextField label="Username" name="username" type="text" placeholder="Doe" />
-            <TextField label="Email" name="email" type="email"  placeholder="johndoe@dev.com"/>
+            <TextField
+              label="Full name"
+              name="fullnames"
+              type="text"
+              placeholder="John Doe"
+            />
+            <TextField
+              label="Username"
+              name="username"
+              type="text"
+              placeholder="Doe"
+            />
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="johndoe@dev.com"
+            />
             <TextField label="Password" name="password" type="password" />
             <button
               className="text-center p-2 justify-center bg-blue-500 rounded"
               type="submit"
             >
-              {" "}
               Sign Up
             </button>
             <button

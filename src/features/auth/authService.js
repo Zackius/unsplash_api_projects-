@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const API_URL = "localhost:4500/user-auth-node/auth/register"
+const API_URL = "/user-auth-node/auth/register"
 
 const register = async (userData) => {
     const response = await axios.post(API_URL, userData)
@@ -10,7 +10,7 @@ const register = async (userData) => {
     }
     return response.data
 }
-const authServices = {
+const authService= {
     register,
 }
-export default authServices
+export default authService

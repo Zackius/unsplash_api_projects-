@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
 import { FaUserAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { register, reset } from "../features/auth/authSlice";
-import Spinner from "../Components /Spinner";
+import authServices from "../features/auth/authServices";
+
 
 const SignUp = () => {
   const validate = Yup.object({
@@ -17,23 +17,22 @@ const SignUp = () => {
       .min(6, "Password must be 6 characters or more")
       .required(" Password Required"),
   });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const { user, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+  const { isSuccess, userInfo } = useSelector(
+    (state) => state.user
   );
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-    if (isSuccess || user) {
+    if (isSuccess) {
       navigate("/");
     }
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
-
+    if (userInfo) {
+      navigate("/user-profile");
+    }
+  }, [userInfo, isSuccess, navigate]);
 
   return (
     <Formik
@@ -44,9 +43,9 @@ const SignUp = () => {
         password: "",
       }}
       validationSchema={validate}
-      onSubmit={(values, e) => {
-        e.preventDefault();
-        dispatch(register(values));
+      onSubmit={(values) => {
+        console.log(values);
+        dispatch(authServices(values));
       }}
     >
       {(formik) => (

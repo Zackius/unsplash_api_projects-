@@ -3,33 +3,30 @@ import authServices from "./authServices";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-
 const initialState = {
-user: user ? user : null,
-  isError: null,
+  user: user ? user : null,
+  isError: false,
   isSuccess: false,
   isLoading: false,
-  userInfo: null,
-  userToken: null,
-  message:  "",
+  message: "",
 };
 
 export const register = createAsyncThunk(
-  "auth/register", 
+  "auth/register",
   async (user, thunkAPI) => {
     try {
-      return await authServices.registerUser(user)
+      return await authServices.registerUser(user);
     } catch (error) {
       const message =
-      (error.response &&
-        error.response.data &&
-        error.response.data.message) ||
-      error.message ||
-      error.toString()
-    return thunkAPI.rejectWithValue(message)
-    }    }
-
-)
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -39,27 +36,25 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
-      state.message = ''
+      state.message = "";
     },
-
-
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authServices.pending, (state) => {
+      .addCase(register.pending, (state) => {
         state.isLoading = true;
         state.isError = null;
       })
-      .addCase(authServices.fulfilled, (state) => {
+      .addCase(register.fulfilled, (state) => {
         state.isLoading = false;
         state.isSuccess = true; ///user registration is succesful
       })
-      .addCase(authServices.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload;
       });
   },
 });
 
-// export const authAction = authSlice.actions;
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;

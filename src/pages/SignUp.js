@@ -5,33 +5,34 @@ import * as Yup from "yup";
 import { FaUserAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import authServices from "../features/auth/authServices";
+import {register, reset} from "../features/auth/authSlice";
+
+const validate = Yup.object({
+  fullnames: Yup.string().required("Fullnames Required"),
+  username: Yup.string().required("Username Required"),
+  email: Yup.string().email("Email is Invalid").required(" Email Required"),
+  password: Yup.string()
+    .min(6, "Password must be 6 characters or more")
+    .required(" Password Required"),
+});
 
 const SignUp = () => {
-  const validate = Yup.object({
-    fullnames: Yup.string().required("Fullnames Required"),
-    username: Yup.string().required("Username Required"),
-    email: Yup.string().email("Email is Invalid").required(" Email Required"),
-    password: Yup.string()
-      .min(6, "Password must be 6 characters or more")
-      .required(" Password Required"),
-  });
-
-  const { isLoading, isError, isSuccess, userInfo } = useSelector(
-    (state) => state.auth
-  );
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { user, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
 
   useEffect(() => {
     if (isSuccess) {
       navigate("/");
     }
-    if (userInfo) {
-      navigate("/user-profile");
+    if (isError) {
+      console.log(message)
     }
-  }, [userInfo, isSuccess, navigate]);
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   return (
     <Formik
@@ -43,8 +44,7 @@ const SignUp = () => {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        console.log(values);
-        dispatch(authServices(values));
+        dispatch(register(values));
       }}
     >
       {(formik) => (

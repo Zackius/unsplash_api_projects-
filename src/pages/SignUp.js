@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authServices from "../features/auth/authServices";
 
-
 const SignUp = () => {
   const validate = Yup.object({
     fullnames: Yup.string().required("Fullnames Required"),
@@ -18,12 +17,12 @@ const SignUp = () => {
       .required(" Password Required"),
   });
 
-  const { isSuccess, userInfo } = useSelector(
-    (state) => state.user
+  const { isLoading, isError, isSuccess, userInfo } = useSelector(
+    (state) => state.auth
   );
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSuccess) {

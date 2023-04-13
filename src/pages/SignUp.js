@@ -26,7 +26,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/");
+      navigate("/signin");
     }
     if (isError) {
       console.log(message)
@@ -45,6 +45,7 @@ const SignUp = () => {
       validationSchema={validate}
       onSubmit={(values) => {
         dispatch(register(values));
+        console.log(values)
       }}
     >
       {(formik) => (

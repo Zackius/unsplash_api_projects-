@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect }  from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextField from "./TextField";
 import { FaSignInAlt } from "react-icons/fa"
-import { useState, useEffect } from "react";
+import { login, reset } from "../features/auth/authSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
+const validate = Yup.object({
+  username: Yup.string().required("Username Required"),
+  password: Yup.string()
+    .min(6, "Password must be 6 characters or more")
+    .required(" Password Required"),
+});
+
 
 const SignIn = () => {
-  const validate = Yup.object({
-    username: Yup.string().required("Username Required"),
-    password: Yup.string()
-      .min(6, "Password must be 6 characters or more")
-      .required(" Password Required"),
-  });
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { user, isError, isSuccess, message } = useSelector(state => state.auth)
+  
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/")
+    }
+    if (isError) {
+      console.log(message)
+    }
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, dispatch, navigate])
 
-  const [register, setRegister] = useState({
-    
-  })
   return (
     <Formik
       initialValues={{
@@ -24,6 +40,7 @@ const SignIn = () => {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
+        dispatch(login(values))
         console.log(values);
       }}
     >

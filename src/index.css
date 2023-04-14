@@ -12,4 +12,8 @@ body{
 .content-div{
     font-family: 'Dancing Script', cursive;    
 }
-
+.containers{
+    background-image: url(./assests/wave\ \(6\).svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

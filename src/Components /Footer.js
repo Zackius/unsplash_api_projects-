@@ -3,7 +3,7 @@ import { BiCopyright } from "react-icons/bi";
 
 const Footer = () => {
   return (
-    <div className=" w-full h-[50px] ">
+    <div className=" w-full bg-slate-400  h-auto ">
           <div className=" flex   py-8  justify-center  text-black font-bold">
           <BiCopyright size={20} />
         <p className="px-8">

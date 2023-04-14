@@ -19,10 +19,10 @@ const GetImage = () => {
         <h2>Loading...</h2>
       ) : (
                   <section className="px-5 container mx-auto">
-                      <h3 className="font-bold text-3xl  md:text-4xl  lg:text-6xl my-10  lg:mt-20 lg:mb-16 text-slate-800 capitalize">
+                      <h3 className="font-bold text-center text-3xl  md:text-4xl  lg:text-6xl my-10  lg:mt-20 lg:mb-16 text-slate-800 capitalize">
       Unsplash Photo Booth
     </h3>
-    <p className="font-bold text-2xl   md:text-3xl  lg:text-4xl  my-10  lg:mt-22 lg:mb:18  text-slate-600 capitalize">
+    <p className="font-bold text-center text-2xl   md:text-3xl  lg:text-4xl  my-10  lg:mt-22 lg:mb:18  text-slate-600 capitalize">
       Recomended Photos
           </p>
                       

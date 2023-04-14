@@ -5,33 +5,23 @@ import  {FaSignInAlt, FaUserAlt} from "react-icons/fa"
 
 const Navbar = () => {
   return (
-    <div className="h-[80px] w-full fixed bg-slate-400 flex justify-between">
-      <img className="h-16 w-42 object-cover pt-2" src={logo} alt="Web Logo" />
-
-      <ul className="flex  pt-4 p-8">
-        <li>
-          <Link to="/" className="px-12 hover:text-white font-bold">
-            {" "}
-            Home
-          </Link>
-        </li>
-        <li>
-                  <Link to="/getimage" className="px-1  hover:text-white font-bold"> Photos</Link>
-              </li>
-
-        <li>
-          <Link to="/signin" className="px-12 flex  gap-2 hover:text-white font-bold">
-            <FaSignInAlt size={20}/>
+    <div className="h-auto  w-full fixed bg-slate-400 flex justify-evenly">
+      <div>
+        <Link to="/">
+        <img className="h-16 w-42 object-cover pt-2 " src={logo} alt="Web Logo" />
+        </Link>
+      
+      </div>
+      <div className=" flex p-5  gap-8">
+                  <Link to="/getimage" className="px-1  hover:text-white font-bold underline"> Photos</Link>
+          <Link to="/signin" className="gap-2 hover:text-white font-bold underline">
             Sign In
           </Link>
-        </li>
-        <li>
-          <Link to="/signup" className="px-12 flex gap-2 hover:text-white font-bold">
-<FaUserAlt size={20}/>
+        
+          <Link to="/signup" className=" gap-2 hover:text-white font-bold underline">
             Sign Up
           </Link>
-        </li>
-      </ul>
+      </div>
     </div>
   );
 };

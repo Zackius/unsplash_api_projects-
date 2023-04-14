@@ -27,7 +27,7 @@ const SignIn = () => {
       navigate("/")
     }
     if (isError) {
-      console.log(message)
+      console.log(isError.message)
     }
     dispatch(reset())
   }, [user, isError, isSuccess, message, dispatch, navigate])
@@ -41,11 +41,11 @@ const SignIn = () => {
       validationSchema={validate}
       onSubmit={(values) => {
         dispatch(login(values))
-        console.log(values);
+       
       }}
     >
       {(formik) => (
-        <div className=" flex flex-col  justify-center items-center p-6 pt-44">
+        <div className=" flex flex-col  justify-center items-center p-6 pt-60 pb-80">
           <h1 className="text-2xl font-bold flex  gap-2 "><FaSignInAlt size={30} />Sign In</h1>
           <p>Please Log In</p>
           <Form className="h-auto w-[400px] bg-white   shadow-md rounded-xl px-8 pt-4  pb-8 mb-4">
